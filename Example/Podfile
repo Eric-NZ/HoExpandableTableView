@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'HoExpandableTableView_Example' do
+  pod 'HoExpandableTableView', :path => '../'
+
+  target 'HoExpandableTableView_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
