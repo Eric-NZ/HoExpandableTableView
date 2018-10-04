@@ -1,5 +1,4 @@
 import XCTest
-import HoExpandableTableView
 
 class Tests: XCTestCase {
     
