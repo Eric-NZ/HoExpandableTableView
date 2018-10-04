@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'HoExpandableTableView'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of HoExpandableTableView.'
+  s.summary          = 'A useful extended TableView derived from UITableView.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -21,14 +21,14 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://github.com/Eric Ho/HoExpandableTableView'
+  s.homepage         = 'https://github.com/eric-nz/HoExpandableTableView'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Eric Ho' => 'eric.iosfan@gmail.com' }
-  s.source           = { :git => 'https://github.com/Eric Ho/HoExpandableTableView.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/eric-nz/HoExpandableTableView.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '11.1'
 
   s.source_files = 'HoExpandableTableView/Classes/**/*'
   
@@ -37,6 +37,6 @@ TODO: Add long description of the pod here.
   # }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
+  s.frameworks = 'UIKit'
   # s.dependency 'AFNetworking', '~> 2.3'
 end

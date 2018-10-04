@@ -1,3 +1,5 @@
+platform :ios, '11.1'
+
 use_frameworks!
 
 target 'HoExpandableTableView_Example' do
