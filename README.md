@@ -1,6 +1,5 @@
 # HoExpandableTableView
 
-[![CI Status](https://img.shields.io/travis/Eric Ho/HoExpandableTableView.svg?style=flat)](https://travis-ci.org/Eric Ho/HoExpandableTableView)
 [![Version](https://img.shields.io/cocoapods/v/HoExpandableTableView.svg?style=flat)](https://cocoapods.org/pods/HoExpandableTableView)
 [![License](https://img.shields.io/cocoapods/l/HoExpandableTableView.svg?style=flat)](https://cocoapods.org/pods/HoExpandableTableView)
 [![Platform](https://img.shields.io/cocoapods/p/HoExpandableTableView.svg?style=flat)](https://cocoapods.org/pods/HoExpandableTableView)

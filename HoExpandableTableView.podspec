@@ -28,7 +28,7 @@ A useful extended TableView derived from UITableView. The section headers can be
   s.source           = { :git => 'https://github.com/eric-nz/HoExpandableTableView.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '11.1'
+  s.ios.deployment_target = '12'
   s.swift_version = '4.2'
 
   s.source_files = 'HoExpandableTableView/Classes/**/*'
