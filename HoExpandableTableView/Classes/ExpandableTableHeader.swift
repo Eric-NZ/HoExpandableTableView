@@ -7,66 +7,74 @@
 
 import UIKit
 
-protocol ExpandableTableHeaderDelegate {
-    func didExpandingStateChanged(on section: Int, now isExpanded: Bool)
-}
-
 class ExpandableTableHeader: UITableViewHeaderFooterView {
-    // section index
-    var index: Int = 0
-    // arrow image view
-    let arrowView = UIImageView()
-    // is expanded: true by default
-    var isExpanded: Bool = true
-    // header delegate
-    var headerDelegate: ExpandableTableHeaderDelegate?
+    var section: Int = 0
+    var isExpanded: Bool = true {
+        didSet {
+            updateExpandedStateOnSection?(section, isExpanded)
+            expandingIndicator.text = isExpanded ? "-" : "+"
+        }
+    }
+    var expandingIndicator = UILabel(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 0, height: 0)))
+    var headerColor: UIColor = UIColor.black {
+        didSet {
+            contentView.backgroundColor = headerColor
+            contentView.tintColor = getComplementaryForColor(color: contentView.backgroundColor!)
+            expandingIndicator.textColor = contentView.tintColor
+        }
+    }
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         
-        // add sub view and constraints
-        contentView.addSubview(arrowView)
-        
-        let marginGuide = contentView.layoutMarginsGuide
-        let trailingConstraint = NSLayoutConstraint(item: arrowView, attribute: .trailing, relatedBy: .equal, toItem: marginGuide, attribute: .trailing, multiplier: 1, constant: 0)
-        let widthConstraint = arrowView.widthAnchor.constraint(equalToConstant: 16)
-        let heightConstraint = arrowView.heightAnchor.constraint(equalToConstant: 16)
-        let yCenter = NSLayoutConstraint(item: arrowView, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0)
-        arrowView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([trailingConstraint, widthConstraint, heightConstraint, yCenter])
-        
-        // add gesture recognizer
-        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onHeaderTapped(_:))))
-        
+        // init UI elements
+        initHeaderContentView()
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
     }
     
-    @objc func onHeaderTapped(_ gestureRecognizer: UITapGestureRecognizer) {
+    public var updateExpandedStateOnSection: ((_ section: Int, _ willBecomeExpanded: Bool)->Void)?
+    
+    private func initHeaderContentView() {
+        // create label indicates the section expanding state
+        expandingIndicator.text = "-"
+        expandingIndicator.font = UIFont.boldSystemFont(ofSize: 24)
+        contentView.addSubview(expandingIndicator)
         
-        if headerDelegate != nil {
-            isExpanded = !isExpanded
-            headerDelegate!.didExpandingStateChanged(on: index, now: isExpanded)
-        }
+        // add constraints
+        autoLayout()
+        
+        // add gesture recognizer
+        contentView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onHeaderTapped(_:))))
     }
     
-    func updateArrowState() {
-        arrowView.rotate(isExpanded ? 0.0 : .pi / 2)
+    @objc func onHeaderTapped(_ sender: UITapGestureRecognizer) {
+        self.isExpanded = !isExpanded
     }
-}
-
-extension UIView {
-    // rotate view
-    func rotate(_ toValue: CGFloat, duration: CFTimeInterval = 0.2) {
-        let animation = CABasicAnimation(keyPath: "transform.rotation")
+    
+    private func autoLayout() {
+        expandingIndicator.translatesAutoresizingMaskIntoConstraints = false
+        // center Y
+        NSLayoutConstraint(item: expandingIndicator, attribute: .centerY, relatedBy: .equal, toItem: contentView, attribute: .centerY, multiplier: 1, constant: 0).isActive = true
+        // right pin
+        NSLayoutConstraint(item: expandingIndicator, attribute: .trailing, relatedBy: .equal, toItem: contentView.safeAreaLayoutGuide, attribute: .trailing, multiplier: 1, constant: 8).isActive = true
+        // width
+        NSLayoutConstraint(item: expandingIndicator, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: 36).isActive = true
+        // height
+        NSLayoutConstraint(item: expandingIndicator, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 36).isActive = true
+    }
+    // get a complementary color to this color
+    private func getComplementaryForColor(color: UIColor) -> UIColor {
         
-        animation.toValue = toValue
-        animation.duration = duration
-        animation.isRemovedOnCompletion = false
-        animation.fillMode = CAMediaTimingFillMode.forwards
+        let ciColor = CIColor(color: color)
         
-        self.layer.add(animation, forKey: nil)
+        // get the current values and make the difference from white:
+        let compRed: CGFloat = 1.0 - ciColor.red
+        let compGreen: CGFloat = 1.0 - ciColor.green
+        let compBlue: CGFloat = 1.0 - ciColor.blue
+        
+        return UIColor(red: compRed, green: compGreen, blue: compBlue, alpha: 1.0)
     }
 }

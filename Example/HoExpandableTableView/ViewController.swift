@@ -9,19 +9,42 @@
 import UIKit
 import HoExpandableTableView
 
+typealias DataTuple = (title: String, items: [String])
 
 class ViewController: UIViewController {
-
-    @IBOutlet weak var expandableTableView: HoExpandableTableView!
+    @IBOutlet var expandableTableView: HoExpandableTableView!
+    var itemMatrix: [DataTuple] = [(title: "abc", items: ["ab", "bc", "cd"]),
+                                   (title: "123", items: ["12", "23", "34"]),
+                                   (title: "ABC", items: ["AB", "BC", "CD"])]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // register reusable identifier
+        expandableTableView.register(UITableViewCell.self, forCellReuseIdentifier: "CustomCell")
+        
+        // assign callbacks for data source
+        expandableTableView.titleForHeaderInSection = { (section) in
+            return self.itemMatrix[section].title
+        }
+        
+        expandableTableView.numberOfSectionsInTableView = {
+            return self.itemMatrix.count
+        }
+        
+        expandableTableView.numberOfRowsInSection = {(section) in
+            return self.itemMatrix[section].items.count
+        }
+        
+        expandableTableView.colorForHeaderInSection = {(section) in
+            return UIColor.orange
+        }
+        
+        expandableTableView.cellForRowAtIndexPath = {(indexPath) in
+            let cell = self.expandableTableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath)
+            cell.textLabel?.text = self.itemMatrix[indexPath.section].items[indexPath.row]
+            return cell
+        }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
+    
 }
-
