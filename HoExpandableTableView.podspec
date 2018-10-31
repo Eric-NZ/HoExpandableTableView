@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'HoExpandableTableView'
-  s.version          = '0.1.0'
+  s.version          = '1.0.0'
   s.summary          = 'A useful extended TableView derived from UITableView.'
 
 # This description is used to generate tags and improve search results.
