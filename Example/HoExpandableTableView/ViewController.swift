@@ -37,7 +37,7 @@ class ViewController: UIViewController {
         }
         
         expandableTableView.colorForHeaderInSection = {(section) in
-            return UIColor.orange
+            return UIColor.lightGray
         }
         
         expandableTableView.cellForRowAtIndexPath = {(indexPath) in

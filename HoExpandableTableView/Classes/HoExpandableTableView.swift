@@ -12,6 +12,20 @@ public class HoExpandableTableView: UITableView, UITableViewDataSource, UITableV
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
+        commonInit()
+    }
+    
+    convenience init(style: UITableView.Style) {
+        self.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0), style: style)
+        
+        commonInit()
+    }
+    
+    private override init(frame: CGRect, style: UITableView.Style) {
+        super.init(frame: frame, style: style)
+    }
+    
+    private func commonInit() {
         register(ExpandableTableHeader.self, forHeaderFooterViewReuseIdentifier: "ExpandableHeader")
         
         dataSource = self
