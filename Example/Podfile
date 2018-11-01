@@ -1,5 +1,5 @@
 platform :ios, '11.1'
-
+source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 
 target 'HoExpandableTableView_Example' do
