@@ -4,6 +4,9 @@
 [![License](https://img.shields.io/cocoapods/l/HoExpandableTableView.svg?style=flat)](https://cocoapods.org/pods/HoExpandableTableView)
 [![Platform](https://img.shields.io/cocoapods/p/HoExpandableTableView.svg?style=flat)](https://cocoapods.org/pods/HoExpandableTableView)
 
+## Screenshot
+![](expandableview.1.gif)
+![](expandableview.2.gif)
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
@@ -21,7 +24,7 @@ pod 'HoExpandableTableView'
 
 ## Author
 
-Eric Ho, eric.iosfan@gmail.com
+Eric He, eric.iosfan@gmail.com
 
 ## License
 
