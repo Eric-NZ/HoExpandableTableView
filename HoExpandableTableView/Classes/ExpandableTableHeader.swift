@@ -19,8 +19,9 @@ class ExpandableTableHeader: UITableViewHeaderFooterView {
     var headerColor: UIColor = UIColor.black {
         didSet {
             contentView.backgroundColor = headerColor
-            contentView.tintColor = getComplementaryForColor(color: contentView.backgroundColor!)
-            expandingIndicator.textColor = contentView.tintColor
+            let complementColor = getComplementaryForColor(color: contentView.backgroundColor!)
+            expandingIndicator.textColor = complementColor
+            textLabel?.textColor = complementColor
         }
     }
     
@@ -64,6 +65,7 @@ class ExpandableTableHeader: UITableViewHeaderFooterView {
         NSLayoutConstraint(item: expandingIndicator, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1, constant: 36).isActive = true
         // height
         NSLayoutConstraint(item: expandingIndicator, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 36).isActive = true
+        
     }
     // get a complementary color to this color
     private func getComplementaryForColor(color: UIColor) -> UIColor {

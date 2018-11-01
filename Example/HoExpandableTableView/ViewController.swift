@@ -36,10 +36,6 @@ class ViewController: UIViewController {
             return self.itemMatrix[section].items.count
         }
         
-        expandableTableView.colorForHeaderInSection = {(section) in
-            return UIColor.lightGray
-        }
-        
         expandableTableView.cellForRowAtIndexPath = {(indexPath) in
             let cell = self.expandableTableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath)
             cell.textLabel?.text = self.itemMatrix[indexPath.section].items[indexPath.row]
