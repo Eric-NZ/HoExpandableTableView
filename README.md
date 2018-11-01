@@ -5,7 +5,8 @@
 [![Platform](https://img.shields.io/cocoapods/p/HoExpandableTableView.svg?style=flat)](https://cocoapods.org/pods/HoExpandableTableView)
 
 ## Screenshot
-![](expandableview.1.gif) ![](expandableview.2.gif)
+![](expandableview.2.gif)
+![](expandableview.1.gif) 
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
