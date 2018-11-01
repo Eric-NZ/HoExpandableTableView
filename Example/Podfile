@@ -3,7 +3,7 @@ platform :ios, '11.1'
 use_frameworks!
 
 target 'HoExpandableTableView_Example' do
-  pod 'HoExpandableTableView', :path => '../'
+  pod 'HoExpandableTableView'
 
   target 'HoExpandableTableView_Tests' do
     inherit! :search_paths
